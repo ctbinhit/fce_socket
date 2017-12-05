@@ -25,7 +25,7 @@ var port      = process.env.PORT  ||  7777;
   io.on('connection' , function(socket){
   	console.log(socket.id + " has just connected.");
 
-  	socket.on('SOCKET_SAU',function(response){
+  	socket.on('SOCKET_CTS',function(response){
   		io.sockets.emit("SOCKET_SAU",{
   			idSocket : socket.id,
   			msg  : socket.id + " has just connected."
