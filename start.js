@@ -9,11 +9,12 @@ var port      = process.env.PORT  ||  7777;
 // Configuration================================================================
 
   // Set up our express application
-  app.use(express.static("public"));
-  app.set("view engine","ejs"); // Set up ejs for templating
-  app.set("views","./views"); // Set up dir views
+  //app.use(express.static("public"));
+  //app.set("view engine","ejs"); // Set up ejs for templating
+  //app.set("views","./views"); // Set up dir views
 
   //require("./app/routes.js")(app,conf);
+
 
   var server = require("http").Server(app);
   var io = require("socket.io")(server);
