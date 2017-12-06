@@ -5,6 +5,7 @@ var express   = require("express");
 // Setup =======================================================================
 var app       = express();
 var port      = process.env.PORT  ||  7777;
+var port_ssl	=	process.env.port || 443;
 //var conf = require("./config/conf.js");
 // Configuration================================================================
 
@@ -15,12 +16,24 @@ var port      = process.env.PORT  ||  7777;
 
   //require("./app/routes.js")(app,conf);
 
+  var ssl_options = {
+  	key: fs.readFileSync('../conf/cert/client.key'),
+  	cert: fs.readFileSync('../conf/cert/client.crt'),
+  	//requestCert: true
+  }
 
-  var server = require("http").Server(app);
-  var io = require("socket.io")(server);
+  var http = require("http").Server(app);
+  // SSL
+  var https = require("https").Server(ssl_options,app);
 
-  server.listen(port, function(){
+  var io = require("socket.io")(https);
+
+  http.listen(port, function(){
   	console.log("Server is running on port " + port);
+  });
+
+  https.listen(port_ssl,function(){
+  	console.log("Server SSL is running on port " + port_ssl);
   });
 
   io.on('connection' , function(socket){
