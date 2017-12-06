@@ -19,7 +19,7 @@ var port_ssl	=	process.env.port || 443;
 
   var ssl_options = {
   	key: fs.readFileSync('../conf/ca-key.pem'),
-  	cert: fs.readFileSync('../conf/ca-cert.pen'),
+  	cert: fs.readFileSync('../conf/ca-cert.pem'),
   	//requestCert: true
   }
 
