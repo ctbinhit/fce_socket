@@ -18,8 +18,8 @@ var port_ssl	=	process.env.port || 443;
   //require("./app/routes.js")(app,conf);
 
   var ssl_options = {
-  	key: fs.readFileSync('../conf/cert/ca-key.pem'),
-  	cert: fs.readFileSync('../conf/cert/ca-cert.pen'),
+  	key: fs.readFileSync('../conf/ca-key.pem'),
+  	cert: fs.readFileSync('../conf/ca-cert.pen'),
   	//requestCert: true
   }
 
