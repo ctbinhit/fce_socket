@@ -42,9 +42,11 @@ var port_ssl	=	process.env.port || 443;
   	console.log(socket.id + " has just connected.");
 
   	socket.on('SOCKET_CTS',function(response){
+      console.log(response);
+
   		io.sockets.emit("SOCKET_SAU",{
   			idSocket : socket.id,
-  			msg  : socket.id + " has just connected."
+  			msg  : socket.id + " say ." + response.msg
   		})
   	});
 
