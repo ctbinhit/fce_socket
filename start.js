@@ -44,7 +44,7 @@ var port_ssl	=	process.env.port || 443;
   	socket.on('SOCKET_CTS',function(response){
       console.log(response);
 
-  		io.sockets.emit("SOCKET_STC",{
+  		socket.emit("SOCKET_STC",{
   			idSocket : socket.id,
   			msg  : socket.id + " say ." + response.msg
   		})
