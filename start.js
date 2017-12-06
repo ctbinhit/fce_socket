@@ -18,8 +18,9 @@ var port_ssl	=	process.env.port || 443;
   //require("./app/routes.js")(app,conf);
 
   var ssl_options = {
-  	key: fs.readFileSync('../conf/ca-key.pem'),
-  	cert: fs.readFileSync('../conf/ca-cert.pem'),
+  	key: fs.readFileSync('./certificate/private.key'),
+  	cert: fs.readFileSync('./certificate/certificate.crt'),
+  	ca: fs.readFileSync('./certificate/ca_bundle.crt'),
   	//requestCert: true
   }
 
@@ -29,13 +30,13 @@ var port_ssl	=	process.env.port || 443;
 
   var io = require("socket.io")(https);
 
-  http.listen(port, function(){
+  https.listen(port, function(){
   	console.log("Server is running on port " + port);
   });
 
-  https.listen(port_ssl,function(){
-  	console.log("Server SSL is running on port " + port_ssl);
-  });
+  // https.listen(port_ssl,function(){
+  // 	console.log("Server SSL is running on port " + port_ssl);
+  // });
 
   io.on('connection' , function(socket){
   	console.log(socket.id + " has just connected.");
