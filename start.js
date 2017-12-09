@@ -16,7 +16,6 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 app.use(express.static('public'));
 
-
 // HTTPS
 const https = require("https").Server(config.ssl_options, app);
 // SOCKET.IO
