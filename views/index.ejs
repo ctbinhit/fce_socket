@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Firstcoinexchange socket.</title>
+    <script src="./socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            var socket = io('https://localhost:7777');
+
+            socket.on('STC_UPFCMC', (res) => {
+                console.log(res);
+                $('.js-tgf-lu').html(res.lastedUpdate);
+                if (res.data !== null) {
+                    var dr = res.data[0];
+                    var t = '<ul class="list-group">';
+                    $.each(dr, (k, v) => {
+                        t += '<li class="list-group-item">' + k + ':<b>' + v + '</b></li>'
+                    });
+                    t += '</ul>';
+                    $('.js-tgf').html(t);
+                }
+
+            });
+        });
+    </script>
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-info">
+                    <div class="panel-heading">Lịch sử hoạt động</div>
+                    <div class="panel-body">
+
+                    </div>
+                    <div class="panel-footer"></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-info">
+                    <div class="panel-heading">Tỷ giá FRST (Coinmarketcap)</div>
+                    <div class="panel-body js-tgf">
+
+                    </div>
+                    <div class="panel-footer">
+                        <p class="text-info">Cập nhật lần cuối vào lúc <span class="js-tgf-lu"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
